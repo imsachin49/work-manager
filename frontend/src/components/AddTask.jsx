@@ -25,7 +25,7 @@ const AddTask = () => {
     }else{
       setLoading(true);
       try{
-        const res=await axios.post('https://work-manager-pi.vercel.app/api/tasks/create',{title:task},{
+        const res=await axios.post('http://localhost:8800/api/tasks/create',{title:task},{
           headers:{Authorization:`Bearer ${token}`}
         })
         setTask('');

@@ -9,6 +9,7 @@ function App() {
   const user=useSelector(state=>state?.user);
   const token=useSelector(state=>state?.token);
   const isLogged=token ? true: false;
+  console.log(process.env.REACT_APP_API_URL);
 
   return (
     <Router>

@@ -16,10 +16,10 @@ app.use(cors({
     methods: 'GET, POST, PUT, DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true,
-    // acess to XMLHttpRequest at 'https://work-manager-pi.vercel.app/api/users/login' from origin 'https://work-manager-u8s2.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
-    // to enconter this error we need to add the following code
     optionsSuccessStatus: 200
 }));
+
+res.setHeader('Access-Control-Allow-Origin', '*');
   
 // Routes
 app.use('/api/tasks',taskRoutes);

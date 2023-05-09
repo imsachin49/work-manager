@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux'
 import {useEffect,useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { setAllTasks } from '../state'
+// const hostUrl='http://localhost:8800'
 
 const Tasks = () => {
   // const [tasks,setTasks]=useState([]);
@@ -18,7 +19,7 @@ const Tasks = () => {
     setLoading(true);
     const getTasks=async()=>{
       try{
-        const res=await axios.get(`https://work-manager-pi.vercel.app/api/tasks/all`,{
+        const res=await axios.get('http://localhost:8800/api/tasks/all',{
           headers:{Authorization:`Bearer ${token}`}
         })
         // setTasks(res.data.tasks);

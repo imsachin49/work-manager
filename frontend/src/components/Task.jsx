@@ -25,7 +25,7 @@ const Tasks = ({task}) => {
 
   const handleDelete = async () => {
     try {
-      const res = await axios.delete(`https://work-manager-pi.vercel.app/api/tasks/${task._id}`, {
+      const res = await axios.delete(`http://localhost:8800/api/tasks/${task._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log(res.data);
@@ -48,7 +48,7 @@ const Tasks = ({task}) => {
     }
     else{
       try {
-        const res = await axios.put(`https://work-manager-pi.vercel.app/api/tasks/${task._id}`,{ title: editTitle },
+        const res = await axios.put(`http://localhost:8800/api/tasks/${task._id}`,{ title: editTitle },
           {headers: { Authorization: `Bearer ${token}` },}
         );
         console.log(res.data.updatedTask);
