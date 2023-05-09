@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8800',
+        target: ['http://localhost:8800','https://work-manager-pi.vercel.app'],
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
