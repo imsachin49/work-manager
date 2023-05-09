@@ -12,9 +12,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(cors({
-    origin: ['http://localhost:5173','https://work-manager-u8s2.vercel.app'],
+    origin: ['http://localhost:5173','https://work-manager-u8s2.vercel.app','https://work-manager-pi.vercel.app'],
     methods: 'GET, POST, PUT, DELETE',
-    allowedHeaders: 'Content-Type, Authorization'
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,
+    // acess to XMLHttpRequest at 'https://work-manager-pi.vercel.app/api/users/login' from origin 'https://work-manager-u8s2.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+    // to enconter this error we need to add the following code
+    optionsSuccessStatus: 200
 }));
   
 // Routes
