@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(cors({
-    origin: ['http://localhost:3000','https://work-manager-pi.vercel.app'],
+    origin: ['http://localhost:3000'],
     methods: 'GET, POST, PUT, DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true,
@@ -21,6 +21,15 @@ app.use(cors({
 
 res.setHeader('Access-Control-Allow-Origin', '*');
   
+// preflight request
+app.use((req, res, next) => {
+    if (req.method === "OPTIONS") {
+      res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+      return res.status(200).json({});
+    }
+    next();
+}); //this is to prevent CORS errors
+
 // Routes
 app.use('/api/tasks',taskRoutes);
 app.use('/api/users',userRoutes);
