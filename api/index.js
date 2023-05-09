@@ -19,8 +19,7 @@ app.use(cors({
     optionsSuccessStatus: 200
 }));
 
-res.setHeader('Access-Control-Allow-Origin', '*');
-  
+
 // preflight request
 app.use((req, res, next) => {
     if (req.method === "OPTIONS") {
