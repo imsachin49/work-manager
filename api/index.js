@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended:true}));
 // }));
 
 app.options('*', cors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000','https://task-trace.vercel.app'],
     methods: 'GET, POST, PUT, DELETE',
     allowedHeaders: 'Content-Type, Authorization',
     credentials: true,
