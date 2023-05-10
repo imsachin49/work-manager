@@ -7,21 +7,21 @@ const {
     updateTaskById,
     deleteTaskById
 }=require('../controllers/task');
-const {verifyToken}=require('../middleware/verify');
+const {verifyToken,corsMiddleware}=require('../middleware/verify');
 
 // Create Task
-router.post('/create',verifyToken,createTask);
+router.post('/create',corsMiddleware,verifyToken,createTask);
 
 // Get all tasks of logged in user
-router.get('/all',verifyToken,getAllTasks);
+router.get('/all',corsMiddleware,verifyToken,getAllTasks);
 
 // Get task by id
-router.get('/:id',verifyToken,getTaskById);
+router.get('/:id',corsMiddleware,verifyToken,getTaskById);
 
 // Update task by id
-router.put('/:id',verifyToken,updateTaskById);
+router.put('/:id',corsMiddleware,verifyToken,updateTaskById);
 
 // Delete task by id
-router.delete('/:id',verifyToken,deleteTaskById);
+router.delete('/:id',corsMiddleware,verifyToken,deleteTaskById);
 
 module.exports=router;

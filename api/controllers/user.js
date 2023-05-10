@@ -10,7 +10,6 @@ const register=async(req,res)=>{
     console.log(req.body)
     try{
         if(!name || !email || !password){
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/'); // add this line
             return res.status(400).json({message:"Please enter all fields"});
         }
         const user=await User.findOne({email});
@@ -26,7 +25,6 @@ const register=async(req,res)=>{
             password:hash
         });
         await newUser.save();
-        res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
         res.status(200).json({message:"User registered successfully"});
     }catch(err){
         res.status(500).json({message:"Something went wrong"});
@@ -38,21 +36,17 @@ const login=async(req,res)=>{
     const {email,password}=req.body;
     try{
         if(!email || !password){
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); // add this line
             return res.status(400).json({message:"Please enter all fields"});
         }
         const user=await User.findOne({email});
         if(!user){
-            res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
             return res.status(400).json({message:"User does not exists"});
         }
         const isMatch=await bcrypt.compare(password,user.password);
         if(!isMatch){
-            res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
             return res.status(400).json({message:"Invalid credentials"});
         }
         const token=jwt.sign({_id:user._id},process.env.JWT_SECRET,{expiresIn:"30d"});
-        res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
         res.status(200).json({token,user:{id:user._id,name:user.name,email:user.email}});
     }catch(err){
         res.status(500).json({message:"Something went wrong"});

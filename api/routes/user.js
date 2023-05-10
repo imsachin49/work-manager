@@ -4,11 +4,12 @@ const {
     register,
     login,
 }=require('../controllers/user');
+const {corsMiddleware}=require('../middleware/verify');
 
 // Register
-router.post('/register',register);
+router.post('/register',corsMiddleware,register);
 
 // Login
-router.post('/login',login);
+router.post('/login',corsMiddleware,login);
 
 module.exports=router;
