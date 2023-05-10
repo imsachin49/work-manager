@@ -19,16 +19,6 @@ app.use(cors({
     optionsSuccessStatus: 200
 }));
 
-
-// preflight request
-app.use((req, res, next) => {
-    if (req.method === "OPTIONS") {
-      res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-      return res.status(200).json({});
-    }
-    next();
-}); //this is to prevent CORS errors
-
 // Routes
 app.use('/api/tasks',taskRoutes);
 app.use('/api/users',userRoutes);

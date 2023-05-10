@@ -8,6 +8,7 @@ const createTask=async(req,res)=>{
     const {title,description,status}=req.body;
     console.log(req.user);
     if(!title){
+        res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
         return res.status(400).json({message:"Please enter title"});
     }
     try{
@@ -18,6 +19,7 @@ const createTask=async(req,res)=>{
             user:req.user._id
         });
         const task=await newTask.save();
+        res.setHeader('Access-Control-Allow-Origin', '*');
         res.status(200).json({message:"Task created successfully",task});
     }
     catch(err){
@@ -29,6 +31,7 @@ const createTask=async(req,res)=>{
 const getAllTasks=async(req,res)=>{
     try{
         const tasks=await Task.find({user:req.user._id}).sort({createdAt:-1}).populate('user');
+        res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
         res.status(200).json({tasks});
     }
     catch(err){
@@ -40,6 +43,7 @@ const getAllTasks=async(req,res)=>{
 const getTaskById=async(req,res)=>{
     try{
         const task=await Task.findById(req.params.id).populate('user');
+        res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
         res.status(200).json({task});
     }
     catch(err){
@@ -53,9 +57,11 @@ const updateTaskById=async(req,res)=>{
     try{
         const task=await Task.findById(req.params.id);
         if(!task){
+            res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
             return res.status(400).json({message:"Task does not exists"});
         }
         const updatedTask=await Task.findByIdAndUpdate(req.params.id,{$set:{title,description,status}},{new:true}).populate('user');
+        res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
         res.status(200).json({message:"Task updated successfully",updatedTask});
     }
     catch(err){
@@ -67,6 +73,7 @@ const updateTaskById=async(req,res)=>{
 const deleteTaskById=async(req,res)=>{
     try{
         const deletedTask=await Task.findByIdAndDelete(req.params.id);
+        res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
         res.status(200).json({message:"Task deleted successfully",deletedTask});
     }catch(err){
         res.status(400).json({message:err.message});

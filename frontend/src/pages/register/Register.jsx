@@ -29,7 +29,7 @@ const Register = () => {
         e.preventDefault()
         try {
             setLoading(true)
-            const res=await axios.post('http://localhost:8800/api/users/register',{name,email,password})
+            const res=await axios.post('https://work-manager-pi.vercel.app/api/users/register',{name,email,password})
             console.log(res.data);
             toast.success('Registered Successfully', {
                 position: "center-center",
