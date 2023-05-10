@@ -30,7 +30,7 @@ const Login = () => {
         e.preventDefault()
         try {
             setLoading(true);
-            const res=await axios.post('https://work-manager-pi.vercel.app/api/users/login', {email, password})
+            const res=await axios.post('https://work-manage-49.vercel.app/api/users/login', {email, password})
             console.log(res.data)
             toast.success('LoggedIn Successfully', {
                 position: "bottom-center",

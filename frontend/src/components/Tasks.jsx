@@ -19,7 +19,7 @@ const Tasks = () => {
     setLoading(true);
     const getTasks=async()=>{
       try{
-        const res=await axios.get('https://work-manager-pi.vercel.app/api/tasks/all',{
+        const res=await axios.get('https://work-manage-49.vercel.app/api/tasks/all',{
           headers:{Authorization:`Bearer ${token}`}
         })
         // setTasks(res.data.tasks);
