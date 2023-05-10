@@ -10,7 +10,7 @@ const register=async(req,res)=>{
     console.log(req.body)
     try{
         if(!name || !email || !password){
-            res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/'); // add this line
             return res.status(400).json({message:"Please enter all fields"});
         }
         const user=await User.findOne({email});
@@ -38,7 +38,7 @@ const login=async(req,res)=>{
     const {email,password}=req.body;
     try{
         if(!email || !password){
-            res.setHeader('Access-Control-Allow-Origin', '*'); // add this line
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000'); // add this line
             return res.status(400).json({message:"Please enter all fields"});
         }
         const user=await User.findOne({email});
